@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Firebase-Blog App</title>
+</head>
+
+<body class="grey lighten-3">
+    <!-- Navbar -->
+    <nav class="z-depth-1 indigo lighten-4">
+        <div class="nav-wrapper container">
+            <a href="#" class="brand-logo">
+                <img src="./asset/makale.jpg" class="circle responsive-img" style=" width: 64px; margin-top: 1px;" />
+            </a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li class="logged-in">
+                    <a href="#" class="red-text text-lighten-2 modal-trigger" data-target="modal-account">Hesabınız</a>
+                </li>
+                <li class="logged-in">
+                    <a href="#" class="red-text text-lighten-2" id="logout">Çıkış</a>
+                </li>
+                <li class="logged-in">
+                    <a href="#" class="red-text text-lighten-2 modal-trigger" data-target="modal-create">Makale
+                        Oluştur</a>
+                </li>
+                <li class="logged-out">
+                    <a href="#" class="grey-text text-darken-2 modal-trigger" data-target="modal-login">Giriş</a>
+                </li>
+                <li class="logged-in">
+                    <a href="#" class="grey-text text-darken-2 modal-trigger" data-target="modal-signup">Üyelik
+                        Oluştur</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Üyelik Oluştur Modal -->
+    <div id="modal-signup" class="modal">
+        <div class="modal-content">
+            <h4>Üyelik Oluştur</h4>
+            <form id="signup-form">
+                <div class="input-filed">
+                    <input type="email" id="signup-email" required>
+                    <label for="signup-email">Email Adresi</label>
+                </div>
+                <div class="input-filed">
+                    <input type="password" id="signup-password" required>
+                    <label for="signup-password">Parola Oluştur</label>
+                </div>
+                <button class="btn yellow darken-2">Kaydet</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Login Modal -->
+    <div id="modal-login" class="modal">
+        <div class="modal-content">
+            <h4>Giriş Yap</h4>
+            <form id="login-form">
+                <div class="input-filed">
+                    <input type="email" id="login-email" required>
+                    <label for="login-email">Email Adresi</label>
+                </div>
+                <div class="input-filed">
+                    <input type="password" id="login-password" required>
+                    <label for="login-password">Parola Oluştur</label>
+                </div>
+                <button class="btn yellow darken-2">Giriş</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Hesap Modal -->
+    <div id="modal-account" class="modal">
+        <div class="modal-content  center-align">
+            <h4>Hesap Detayları</h4> <br />
+            <div class="account-details"></div>
+        </div>
+    </div>
+
+
+    <!-- Makale Oluştur Modal-->
+    <div id="modal-create" class="modal">
+        <div class="modal-content">
+            <h4>Makale Oluştur</h4> <br />
+            <form id="create-form">
+                <div class="input-filed">
+                    <input type="text" id="title" required>
+                    <label for="title">Makale Başlık</label>
+                </div>
+                <div class="input-filed">
+                    <textarea type="text" id="content" class="materialize-textarea" required></textarea>
+                    <label for="content">Makale İçerik</label>
+                </div>
+                <button class="btn yellow darken-2">Kaydet</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Makale Listesi -->
+    <div class="container" style="margin-top:40px;">
+        <ul class="collapsible guides" style="border:none;">
+            <li>
+                <div class="collapsible-header grey lighten-3">First</div>
+                <div class="collapsible-body white"><span>Lorem ipsum dolor sit amet.</span></div>
+            </li>
+            <li>
+                <div class="collapsible-header grey lighten-3">Second</div>
+                <div class="collapsible-body white"><span>Lorem ipsum dolor sit amet.</span></div>
+            </li>
+            <li>
+                <div class="collapsible-header grey lighten-3">Third</div>
+                <div class="collapsible-body white"><span>Lorem ipsum dolor sit amet.</span></div>
+            </li>
+        </ul>
+
+    </div>
+    
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+          apiKey: "AIzaSyD_yYmtIDHX8b6B35YtwoJDO3uRHcfSo8Q",
+          authDomain: "blog-auth-app.firebaseapp.com",
+          projectId: "blog-auth-app",
+          storageBucket: "blog-auth-app.appspot.com",
+          messagingSenderId: "926803765213",
+          appId: "1:926803765213:web:b43b8949fae2bdec69b834",
+          measurementId: "G-MXJHX4PC93"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        const auth=firebase.auth();
+        const db=firebase.firestore();
+      </script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./scripts/app.js"></script>
+    <script src="./scripts/auth.js"></script>
+</body>
+
+</html>
