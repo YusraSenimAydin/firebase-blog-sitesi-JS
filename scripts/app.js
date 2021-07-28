@@ -8,13 +8,15 @@ const uyelikDetaylari=document.querySelector('.account-details');
 
 const kullaniciYukle=(kullanici)=>{
     if(kullanici){
-        let html =`
+        db.collection("kullanicilar").doc(kullanici.uid).get().then(doc=>{
+            let html =`
         <div>Kullanıcı Mail: ${kullanici.email}</div>
+        <div>${doc.data().bio}</div>
         `;
         uyelikDetaylari.innerHTML=html;
+        });       
         girisLinkleri.forEach(item=>item.style.display='block');
         cikisLinkleri.forEach(item=>item.style.display='none');     
-
     }else{
         uyelikDetaylari.innerHTML='';
         girisLinkleri.forEach(item=>item.style.display='none'); 

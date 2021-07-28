@@ -48,9 +48,16 @@ uyelikForm.addEventListener("submit", (e)=>{
 
     auth.createUserWithEmailAndPassword(email,parola).then(sonuc=>{
         console.log(sonuc.user);
-        const modal = document.querySelector("#modal-signup");
-        M.Modal.getInstance(modal).close();
-        uyelikForm.reset();
+
+        return db.collection("kullanicilar").doc(sonuc.user.uid).set({
+            bio:uyelikForm['signup-bio'].value
+        }).then(()=>{
+            const modal = document.querySelector("#modal-signup");
+            M.Modal.getInstance(modal).close();
+            uyelikForm.reset();
+
+        })
+       
     
     
     });
